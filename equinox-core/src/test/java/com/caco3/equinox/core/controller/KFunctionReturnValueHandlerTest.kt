@@ -48,7 +48,7 @@ class KFunctionReturnValueHandlerTest {
         returnValueHandler.handleReturnValue(returnValue, handlerReturnType, container, webRequest)
 
         val view = container.view as RenderMethodView
-        val expected = RenderMethodView(RenderMethod(returnValue.javaMethod!!), null, renderMethodAdapter)
+        val expected = RenderMethodView(RenderMethod.forKotlinFunction(returnValue), null, renderMethodAdapter)
         assertEquals(expected, view)
     }
 }

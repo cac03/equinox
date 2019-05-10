@@ -22,7 +22,7 @@ class RenderMethodViewTest {
     private lateinit var myView: MyView
     @Mock
     private lateinit var renderMethodAdapter: RenderMethodAdapter
-    private val renderMethod = RenderMethod(MyView::myRenderMethod.javaMethod!!)
+    private val renderMethod = RenderMethod.forKotlinFunction(MyView::myRenderMethod)
 
     private lateinit var view: RenderMethodView
 

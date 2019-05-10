@@ -15,7 +15,7 @@ class RenderMethodTest {
 
     class GetParametersTests {
 
-        private val renderMethod = RenderMethod(RenderMethodTest::dummyMethod.javaMethod!!)
+        private val renderMethod = RenderMethod.forKotlinFunction(RenderMethodTest::dummyMethod)
 
         @Test
         fun `should return 2 parameters`() {
@@ -40,7 +40,7 @@ class RenderMethodTest {
     @Test
     fun `descriptive toString returned`() {
         val javaMethod = ::dummyMethod.javaMethod!!
-        val toString = RenderMethod(javaMethod).toString()
+        val toString = RenderMethod.forKotlinFunction(::dummyMethod).toString()
         assertEquals("RenderMethod(targetMethod=$javaMethod)", toString)
     }
 
@@ -48,7 +48,7 @@ class RenderMethodTest {
 
     @Test
     fun `invoke dummy method`() {
-        val renderMethod = RenderMethod(::returnFirstParameter.javaMethod!!)
+        val renderMethod = RenderMethod.forKotlinFunction(::returnFirstParameter)
         val returnValue = renderMethod.invoke(this, true)
         assertEquals(true, returnValue)
     }
@@ -63,7 +63,7 @@ class RenderMethodTest {
     @Test
     fun `throws IllegalArgumentException if method is not static and target is null`() {
         assertThrows<IllegalArgumentException> {
-            RenderMethod(::returnFirstParameter.javaMethod!!).invoke(null, 42)
+            RenderMethod.forKotlinFunction(::returnFirstParameter).invoke(null, 42)
         }
     }
 }

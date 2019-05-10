@@ -42,7 +42,7 @@ class DefaultRenderMethodAdapterTest {
         private val mockRequest = MockHttpServletRequest()
         private val mockResponse = MockHttpServletResponse()
         private val renderWithMandatoryParameterMethod =
-                RenderMethod(DummyRenderer::renderWithMandatoryParameter.javaMethod!!)
+                RenderMethod.forKotlinFunction(DummyRenderer::renderWithMandatoryParameter)
         @Mock
         private lateinit var mockBean: DummyRenderer
 

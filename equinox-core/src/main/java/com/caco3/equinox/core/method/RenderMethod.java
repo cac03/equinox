@@ -1,5 +1,7 @@
 package com.caco3.equinox.core.method;
 
+import kotlin.reflect.KFunction;
+import kotlin.reflect.jvm.ReflectJvmMapping;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.SynthesizingMethodParameter;
 import org.springframework.lang.Nullable;
@@ -29,6 +31,11 @@ public class RenderMethod {
   public RenderMethod(Method method) {
     Assert.notNull(method, "method == null");
     this.method = method;
+  }
+
+  public static RenderMethod forKotlinFunction(KFunction<?> kFunction) {
+    Method method = ReflectJvmMapping.getJavaMethod(kFunction);
+    return new RenderMethod(method);
   }
 
   /**
