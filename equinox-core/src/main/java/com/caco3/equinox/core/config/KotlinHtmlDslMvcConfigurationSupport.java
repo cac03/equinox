@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
 
 @Configuration
-public class EquinoxViewMvcConfigurationCustomizer implements WebMvcConfigurer {
+public class KotlinHtmlDslMvcConfigurationSupport implements WebMvcConfigurer {
   private final KFunctionReturnValueHandler kFunctionReturnValueHandler;
 
-  public EquinoxViewMvcConfigurationCustomizer(KFunctionReturnValueHandler kFunctionReturnValueHandler) {
+  public KotlinHtmlDslMvcConfigurationSupport(KFunctionReturnValueHandler kFunctionReturnValueHandler) {
     this.kFunctionReturnValueHandler = kFunctionReturnValueHandler;
   }
 

@@ -7,9 +7,10 @@ import com.caco3.equinox.core.render.DefaultRenderMethodAdapter;
 import com.caco3.equinox.core.render.RenderMethodAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class EquinoxViewConfigurationSupport {
+public class KotlinHtmlDslConfigurationSupport implements WebMvcConfigurer {
   @Bean
   RenderMethodAdapter renderMethodAdapter() {
     return new DefaultRenderMethodAdapter.Builder()
