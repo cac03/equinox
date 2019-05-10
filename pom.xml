@@ -10,7 +10,6 @@
   <modules>
     <module>equinox-core</module>
     <module>equinox-samples</module>
-    <module>equinox-samples</module>
   </modules>
   <packaging>pom</packaging>
 
