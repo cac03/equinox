@@ -2,16 +2,18 @@ package com.caco3.equinox.samples.musicservice.web.controller
 
 import com.caco3.equinox.samples.musicservice.model.Album
 import com.caco3.equinox.samples.musicservice.model.Song
+import com.caco3.equinox.samples.musicservice.web.view.renderAlbum
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.web.bind.annotation.RequestMapping
 import java.time.Duration
+import kotlin.reflect.KFunction
 
 @Controller
 class AlbumController {
     @RequestMapping("/albums/floabn")
-    fun forLackOfABetterName(model: Model): String {
+    fun forLackOfABetterName(model: Model): KFunction<*> {
         val songs = listOf(
                 Song("FML", Duration.ofSeconds(6 * 60 + 35)),
                 Song("Moar Ghosts 'n' Stuff", Duration.ofSeconds(4 * 60 + 30)),
@@ -26,6 +28,6 @@ class AlbumController {
         )
         val album = Album("deadmau5", "For Lack of a Better Name", songs)
         model["album"] = album
-        return "album"
+        return ::renderAlbum
     }
 }
