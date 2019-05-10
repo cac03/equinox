@@ -12,6 +12,7 @@ import java.lang.reflect.Parameter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
@@ -63,6 +64,23 @@ public class RenderMethod {
           () -> "target == null but method = \"" + method + "\" is not static");
     }
     return ReflectionUtils.invokeMethod(method, target, args);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(method);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+    if (obj.getClass() != RenderMethod.class) {
+      return false;
+    }
+    RenderMethod other = (RenderMethod) obj;
+    return Objects.equals(method, other.method);
   }
 
   @Override
