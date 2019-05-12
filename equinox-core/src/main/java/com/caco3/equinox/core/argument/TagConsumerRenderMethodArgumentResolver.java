@@ -1,5 +1,6 @@
 package com.caco3.equinox.core.argument;
 
+import kotlinx.html.TagConsumer;
 import kotlinx.html.consumers.DelayedConsumer;
 import kotlinx.html.stream.HTMLStreamBuilder;
 import org.apache.commons.logging.Log;
@@ -30,7 +31,7 @@ public class TagConsumerRenderMethodArgumentResolver
 
   @Override
   public boolean supportsArgument(MethodParameter parameter) {
-    boolean supports = parameter.getParameterType().isAssignableFrom(HTMLStreamBuilder.class);
+    boolean supports = parameter.getParameterType().isAssignableFrom(TagConsumer.class);
     if (log.isTraceEnabled()) {
       log.trace("supportsParameter=\"" + parameter + "\" = " + supports);
     }

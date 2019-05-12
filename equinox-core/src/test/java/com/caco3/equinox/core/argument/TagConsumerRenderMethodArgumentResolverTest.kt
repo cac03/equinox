@@ -2,8 +2,11 @@ package com.caco3.equinox.core.argument
 
 import kotlinx.html.TagConsumer
 import kotlinx.html.body
+import kotlinx.html.consumers.DelayedConsumer
 import kotlinx.html.html
+import kotlinx.html.stream.HTMLStreamBuilder
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -69,5 +72,18 @@ class TagConsumerRenderMethodArgumentResolverTest {
         """.trimIndent(), response.contentAsString) {
             "Returned $tagConsumer should be bound to response"
         }
+    }
+
+    @Suppress("UNUSED")
+    private fun functionWithTagConsumerSubclassParameter(
+            consumer: HTMLStreamBuilder<*>
+    ) = Unit
+
+
+    @Test
+    fun `TagConsumer's subclasses are not supported`() {
+
+        val methodParameter = MethodParameter.forExecutable(::functionWithTagConsumerSubclassParameter.javaMethod!!, 0)
+        assertFalse(argumentResolver.supportsArgument(methodParameter))
     }
 }
